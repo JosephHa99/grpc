@@ -26,9 +26,9 @@ def run():
     # used in circumstances in which the with statement does not fit the needs
     # of the code.
     with grpc.insecure_channel('localhost:50051') as channel:
-        stub = reverse_pb2_grpc.messengerStub(channel)
-        response = stub.inMessage(reverse_pb2.input_reply(retMsg='123'))
-        print("Greeter client received: " + response.message)
+        stub = reverse_pb2_grpc.integer_messageStub(channel)
+        response = stub.SendInteger(reverse_pb2.requestInteger(value = 32))
+        print("Greeter client received: " + str(response.value))
 
 
 if __name__ == '__main__':

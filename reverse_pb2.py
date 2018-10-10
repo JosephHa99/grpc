@@ -19,10 +19,72 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='msgreverse',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\rreverse.proto\x12\nmsgreverse\"\x14\n\x05input\x12\x0b\n\x03msg\x18\x01 \x01(\t\"\x1d\n\x0binput_reply\x12\x0e\n\x06retMsg\x18\x01 \x01(\t2F\n\tmessenger\x12\x39\n\tinMessage\x12\x11.msgreverse.input\x1a\x17.msgreverse.input_reply\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\rreverse.proto\x12\nmsgreverse\"\x1d\n\x0creplyInteger\x12\r\n\x05value\x18\x01 \x01(\x05\"\x1f\n\x0erequestInteger\x12\r\n\x05value\x18\x01 \x01(\x05\"\x14\n\x05input\x12\x0b\n\x03msg\x18\x01 \x01(\t\"\x1d\n\x0binput_reply\x12\x0e\n\x06retMsg\x18\x01 \x01(\t2H\n\tmessenger\x12;\n\x0bSendMessage\x12\x11.msgreverse.input\x1a\x17.msgreverse.input_reply\"\x00\x32X\n\x0finteger_message\x12\x45\n\x0bSendInteger\x12\x1a.msgreverse.requestInteger\x1a\x18.msgreverse.replyInteger\"\x00\x62\x06proto3')
 )
 
 
+
+
+_REPLYINTEGER = _descriptor.Descriptor(
+  name='replyInteger',
+  full_name='msgreverse.replyInteger',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='msgreverse.replyInteger.value', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=29,
+  serialized_end=58,
+)
+
+
+_REQUESTINTEGER = _descriptor.Descriptor(
+  name='requestInteger',
+  full_name='msgreverse.requestInteger',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='value', full_name='msgreverse.requestInteger.value', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=60,
+  serialized_end=91,
+)
 
 
 _INPUT = _descriptor.Descriptor(
@@ -51,8 +113,8 @@ _INPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29,
-  serialized_end=49,
+  serialized_start=93,
+  serialized_end=113,
 )
 
 
@@ -82,13 +144,29 @@ _INPUT_REPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=51,
-  serialized_end=80,
+  serialized_start=115,
+  serialized_end=144,
 )
 
+DESCRIPTOR.message_types_by_name['replyInteger'] = _REPLYINTEGER
+DESCRIPTOR.message_types_by_name['requestInteger'] = _REQUESTINTEGER
 DESCRIPTOR.message_types_by_name['input'] = _INPUT
 DESCRIPTOR.message_types_by_name['input_reply'] = _INPUT_REPLY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+replyInteger = _reflection.GeneratedProtocolMessageType('replyInteger', (_message.Message,), dict(
+  DESCRIPTOR = _REPLYINTEGER,
+  __module__ = 'reverse_pb2'
+  # @@protoc_insertion_point(class_scope:msgreverse.replyInteger)
+  ))
+_sym_db.RegisterMessage(replyInteger)
+
+requestInteger = _reflection.GeneratedProtocolMessageType('requestInteger', (_message.Message,), dict(
+  DESCRIPTOR = _REQUESTINTEGER,
+  __module__ = 'reverse_pb2'
+  # @@protoc_insertion_point(class_scope:msgreverse.requestInteger)
+  ))
+_sym_db.RegisterMessage(requestInteger)
 
 input = _reflection.GeneratedProtocolMessageType('input', (_message.Message,), dict(
   DESCRIPTOR = _INPUT,
@@ -112,12 +190,12 @@ _MESSENGER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=82,
-  serialized_end=152,
+  serialized_start=146,
+  serialized_end=218,
   methods=[
   _descriptor.MethodDescriptor(
-    name='inMessage',
-    full_name='msgreverse.messenger.inMessage',
+    name='SendMessage',
+    full_name='msgreverse.messenger.SendMessage',
     index=0,
     containing_service=None,
     input_type=_INPUT,
@@ -128,5 +206,29 @@ _MESSENGER = _descriptor.ServiceDescriptor(
 _sym_db.RegisterServiceDescriptor(_MESSENGER)
 
 DESCRIPTOR.services_by_name['messenger'] = _MESSENGER
+
+
+_INTEGER_MESSAGE = _descriptor.ServiceDescriptor(
+  name='integer_message',
+  full_name='msgreverse.integer_message',
+  file=DESCRIPTOR,
+  index=1,
+  serialized_options=None,
+  serialized_start=220,
+  serialized_end=308,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='SendInteger',
+    full_name='msgreverse.integer_message.SendInteger',
+    index=0,
+    containing_service=None,
+    input_type=_REQUESTINTEGER,
+    output_type=_REPLYINTEGER,
+    serialized_options=None,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_INTEGER_MESSAGE)
+
+DESCRIPTOR.services_by_name['integer_message'] = _INTEGER_MESSAGE
 
 # @@protoc_insertion_point(module_scope)

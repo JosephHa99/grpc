@@ -26,13 +26,19 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 class Greeter(reverse_pb2_grpc.messengerServicer):
 
-    def SayHello(self, request, context):
+    def Send(self, request, context):
         return reverse_pb2.input_reply(message='Hello, %s!' % request.msg)
+class IntegerMessage(reverse_pb2_grpc.integer_messageServicer):
+    def SendInteger(self, request, context):
+        temp = int(request.value)
+        temp *= 2
+        return reverse_pb2.replyInteger(value=temp)
 
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     reverse_pb2_grpc.add_messengerServicer_to_server(Greeter(), server)
+    reverse_pb2_grpc.add_integer_messageServicer_to_server(IntegerMessage(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
     try:

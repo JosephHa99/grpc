@@ -14,8 +14,8 @@ class messengerStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.inMessage = channel.unary_unary(
-        '/msgreverse.messenger/inMessage',
+    self.SendMessage = channel.unary_unary(
+        '/msgreverse.messenger/SendMessage',
         request_serializer=reverse__pb2.input.SerializeToString,
         response_deserializer=reverse__pb2.input_reply.FromString,
         )
@@ -25,7 +25,7 @@ class messengerServicer(object):
   # missing associated documentation comment in .proto file
   pass
 
-  def inMessage(self, request, context):
+  def SendMessage(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -35,12 +35,54 @@ class messengerServicer(object):
 
 def add_messengerServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'inMessage': grpc.unary_unary_rpc_method_handler(
-          servicer.inMessage,
+      'SendMessage': grpc.unary_unary_rpc_method_handler(
+          servicer.SendMessage,
           request_deserializer=reverse__pb2.input.FromString,
           response_serializer=reverse__pb2.input_reply.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
       'msgreverse.messenger', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
+
+class integer_messageStub(object):
+  # missing associated documentation comment in .proto file
+  pass
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.SendInteger = channel.unary_unary(
+        '/msgreverse.integer_message/SendInteger',
+        request_serializer=reverse__pb2.requestInteger.SerializeToString,
+        response_deserializer=reverse__pb2.replyInteger.FromString,
+        )
+
+
+class integer_messageServicer(object):
+  # missing associated documentation comment in .proto file
+  pass
+
+  def SendInteger(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_integer_messageServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'SendInteger': grpc.unary_unary_rpc_method_handler(
+          servicer.SendInteger,
+          request_deserializer=reverse__pb2.requestInteger.FromString,
+          response_serializer=reverse__pb2.replyInteger.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'msgreverse.integer_message', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))

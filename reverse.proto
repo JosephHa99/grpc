@@ -3,7 +3,16 @@ syntax = "proto3";
 package msgreverse;
 
 service messenger{
-    rpc inMessage (input) returns (input_reply){}
+    rpc SendMessage (input) returns (input_reply){}
+}
+service integer_message{
+    rpc SendInteger (requestInteger) returns (replyInteger){}
+}
+message replyInteger{
+    int32 value=1;
+}
+message requestInteger{
+    int32 value =1;
 }
 message input{
     string msg = 1;
