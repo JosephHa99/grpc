@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package msgreverse;
+
+service messenger{
+    rpc inMessage (input) returns (input_reply){}
+}
+message input{
+    string msg = 1;
+}
+
+message input_reply{
+    string retMsg = 1;
+}
